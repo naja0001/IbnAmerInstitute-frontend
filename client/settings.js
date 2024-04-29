@@ -1,10 +1,5 @@
-const isProduction = import.meta.env.MODE === "production";
-
-const URL = isProduction
-  ? import.meta.env.VITE_PROD_API_BASE_URL
-  : import.meta.env.VITE_DEV_API_BASE_URL;
-
-const MODE = isProduction ? "Production" : "Development";
-console.info(MODE + " API URL: " + URL);
-console.info("ENV", import.meta.env);
-export const API_URL = URL;
+// settings.js
+export const API_URL =
+  import.meta.env.MODE === "development"
+    ? import.meta.env.VITE_DEV_API_BASE_URL
+    : import.meta.env.VITE_PROD_API_BASE_URL;
