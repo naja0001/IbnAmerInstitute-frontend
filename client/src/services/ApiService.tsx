@@ -1,6 +1,6 @@
 import { API_URL } from "../../settings";
 
-const BASE_URL = "https://monkfish-app-3d8pn.ondigitalocean.app/";
+const BASE_URL = "https://monkfish-app-3d8pn.ondigitalocean.app";
 
 export const STUDENTS_URL = BASE_URL + "/students";
 
