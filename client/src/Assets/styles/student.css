@@ -5,11 +5,11 @@ body {
   margin: 0;
   padding: 0;
   background-color: #ffffff;
-  color: #333;
+  color: #000000;
 }
 
 .container {
-  max-width: 1200px;
+  width: 200px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -19,11 +19,12 @@ h1 {
   margin-bottom: 20px;
 }
 
-.btn1 {
+.btn {
+  width: 200px;
   display: inline-block !important;
   text-decoration: none !important;
   color: rgb(3, 3, 3) !important;
-  border: 1px solid rgb(244, 237, 237) !important;
+  border: 1px solid rgb(0, 0, 0) !important;
   background: none !important;
   padding: 12px 34px !important;
   font-size: 13px !important;
@@ -34,7 +35,7 @@ h1 {
   border-radius: 0 !important;
 }
 
-.btn1::before {
+.btn::before {
   content: "";
   position: absolute;
   top: 0;
@@ -43,16 +44,8 @@ h1 {
   width: 100%;
   clip-path: circle(0% at 0% 0%);
   transition: 0.5s;
-  background: var(--green);
+  background: #af8260;
   z-index: -1;
-}
-
-.btn1:hover::before {
-  clip-path: circle(100%);
-}
-
-.btn1:hover {
-  color: #000000;
 }
 
 .course {
@@ -84,7 +77,6 @@ li {
   list-style-type: none;
   margin: 5px 0;
   font-size: 16px;
-  color: #666;
 }
 
 li p {
@@ -97,4 +89,266 @@ li p {
 .course-row:hover {
   background-color: gray; /* Light grey background on hover */
   cursor: pointer;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr; /* Sidebar takes auto width, StudentList takes remaining space */
+}
+
+.student-list-container {
+  margin: 0 auto; /* Center the container */
+}
+
+/* student.css */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.main-content {
+  padding: 20px;
+  background-color: white;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.student-list-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-back {
+  background-color: #6c757d;
+}
+
+.form-select {
+  margin-right: 10px;
+  width: 200px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #af8260;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  background-color: #e4c59e;
+}
+
+.table th {
+  background-color: #af8260;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tbody tr:hover {
+  background-color: #e2e2e2;
+}
+
+.btn-edit {
+  background-color: #17a2b8;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
+
+.main-content {
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: rgb(255, 255, 255);
+}
+
+/* StudentDetails.css */
+
+.student-details-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.section p {
+  margin-bottom: 5px;
+}
+
+.form-input {
+  margin-bottom: 10px;
+}
+
+.form-input input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-input button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-input button:hover {
+  background-color: #0056b3;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  padding: 20px;
+}*/
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input[type="date"],
+input[type="text"],
+button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #4cae4c;
+}
+
+/* Back to List Link */
+.back-to-list {
+  text-decoration: none;
+  color: #333;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+/* Styling for Update and Save buttons */
+.update-button {
+  background-color: #f0ad4e;
+  margin-right: 5px;
+}
+
+.update-button:hover {
+  background-color: #ec971f;
+}
+
+.save-button {
+  background-color: #337ab7;
+}
+
+.save-button:hover {
+  background-color: #286090;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+label {
+  margin-right: 20px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Targeting the specific div that contains the radio buttons for styling */
+div > div {
+  margin-bottom: 10px;
+}
+
+/* Style for the checked radio button */
+input[type="radio"]:checked + label {
+  color: #007bff;
+  font-weight: bold;
 }

@@ -1,0 +1,94 @@
+/*---------------------about us---------------*/
+
+.about-us h1::after {
+  width: 0%;
+}
+
+.about-us {
+  width: 100%;
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  gap: -20px;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.about-img {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.about-img img {
+  width: 90%;
+  object-fit: cover;
+  box-shadow: -30px 30px var(--green);
+  opacity: 0.9;
+}
+
+.text h1 {
+  color: #000000;
+  line-height: 46px;
+  margin-bottom: 20px;
+  text-align: center; /* Align text to the left */
+}
+
+.text p {
+  max-width: 800px;
+  color: #000000;
+  font-size: 16px; /* Adjust the font size to your preference */
+  list-style: none; /* Remove list-style */
+  padding-left: 0; /* Remove default padding for lists */
+}
+
+.text img {
+  width: 50px;
+}
+
+@media (max-width: 1385px) {
+  .about-us {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .about-img img {
+    width: 100%;
+  }
+  .about-img {
+    margin-bottom: 50px;
+    padding: 20px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1040px) {
+  .about-us {
+    flex-direction: column;
+  }
+  .about-img img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1040px) {
+  .about-us {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+  .text {
+    text-align: center;
+  }
+  .text h1 {
+    font-size: 25px;
+    text-align: center;
+  }
+  hr {
+    display: none;
+  }
+  .text p {
+    font-size: 15px;
+    line-height: 2;
+    margin-top: 40px;
+  }
+}

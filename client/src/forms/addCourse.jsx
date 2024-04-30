@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createCourse,
@@ -10,7 +10,7 @@ const AddCourse = () => {
   const [formData, setFormData] = useState({
     course_name: "",
     class_duration: "",
-    title: "",
+    title: "", // New field for teacher's title
     firstname: "",
     lastname: "",
     email: "",
@@ -54,24 +54,19 @@ const AddCourse = () => {
       console.log("Teacher created:", teacherResponse);
 
       // Create the class
-      // Create the class
-      // Update the createClass function call to pass the correct keys
       const classResponse = await createClass({
-        courseName: formData.course_name, // Use formData.course_name instead of formData.courseName
-        teacherName: formData.title, // Use formData.title instead of formData.teacherName
-        email: formData.email,
-        duration: formData.class_duration, // Use formData.class_duration instead of formData.duration
+        duration: formData.class_duration,
+        course_id: courseResponse.course_id,
+        teacher_id: teacherResponse.teacher_id,
       });
-
-      console.log("Course created:", courseResponse);
-      console.log("Teacher created:", teacherResponse);
       console.log("Class created:", classResponse);
 
       // Navigate to the appropriate route after success
       navigate("/sidebar/course");
     } catch (error) {
-      console.error("Error adding course:", error.message);
-      alert(`Failed to add course. Error: ${error.message}`);
+      // Log and handle error
+      console.error("Error adding entities:", error.message);
+      alert(`Failed to add entities. Error: ${error.message}`);
     }
   };
 
@@ -83,7 +78,7 @@ const AddCourse = () => {
   return (
     <div className="d-flex justify-content-center align-items-center mt-3">
       <div className="p-3 rounded w-50 border">
-        <h3 className="text-center">Add Course</h3>
+        <h3 className="text-center">Add New Entities</h3>
         <form onSubmit={handleSubmit}>
           {/* Course form */}
           <div className="mb-3">
@@ -188,7 +183,7 @@ const AddCourse = () => {
           </div>
 
           <button type="submit" className="btn btn-primary w-100">
-            Add Course
+            Add Entities
           </button>
         </form>
       </div>

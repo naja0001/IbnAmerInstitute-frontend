@@ -1,4 +1,3 @@
-import React from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -36,15 +35,15 @@ const QuranLessonCalendar = () => {
   };
 
   // Add Quran lessons for girls (Tuesday: 16:00 - 19:00) in pink
-  addQuranLessons(startDate, endDate, 2, 16, 19, "pink");
+  addQuranLessons(startDate, endDate, 2, 16, 19, "#F2D1D1");
 
   // Add Quran lessons for boys (Thursday: 19:00 - 21:00) in blue
-  addQuranLessons(startDate, endDate, 4, 19, 21, "blue");
+  addQuranLessons(startDate, endDate, 4, 19, 21, "#C6DCE4");
 
   // Add Quran lessons for boys (Friday, Saturday, Sunday: 16:00 - 20:00) in blue
-  addQuranLessons(startDate, endDate, 5, 16, 20, "blue"); // Friday
-  addQuranLessons(startDate, endDate, 6, 16, 20, "blue"); // Saturday
-  addQuranLessons(startDate, endDate, 7, 16, 20, "blue"); // Sunday
+  addQuranLessons(startDate, endDate, 5, 16, 20, "#C6DCE4"); // Friday
+  addQuranLessons(startDate, endDate, 6, 16, 20, "#C6DCE4"); // Saturday
+  addQuranLessons(startDate, endDate, 7, 16, 20, "#C6DCE4"); // Sunday
 
   // Add Tajweed lessons for girls every other Thursday (17:00 - 18:00) in pink
   const thursdays = [];
@@ -61,7 +60,7 @@ const QuranLessonCalendar = () => {
       start: startDateTime,
       end: endDateTime,
       allDay: false,
-      color: "purple",
+      color: "#E4C59E",
     });
   });
 

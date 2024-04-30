@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   getStudent,
@@ -10,8 +10,8 @@ import "./../../Assets/styles/student.css";
 
 function StudentList() {
   const [students, setStudents] = useState([]);
-  const [courses, setCourses] = useState([]); // Corrected from allCourses to courses
-  const [selectedCourseId, setSelectedCourseId] = useState(""); // To store the selected course ID for filtering
+  const [courses, setCourses] = useState([]);
+  const [selectedCourseId, setSelectedCourseId] = useState("");
   const [gender, setGender] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -31,7 +31,6 @@ function StudentList() {
         setStudents(fetchedStudents);
 
         const fetchedCourses = await getCourses();
-        console.log("Fetched Courses:", fetchedCourses); // Log fetched courses
         setCourses(fetchedCourses);
       } catch (error) {
         console.error("Error fetching data:", error.message);
@@ -45,32 +44,23 @@ function StudentList() {
   }, [gender]);
 
   const handleCourseChange = (e) => {
-    // Optionally convert the value to a number if your IDs are numeric
     setSelectedCourseId(e.target.value);
   };
 
   const getFilteredStudentsByCourse = () => {
-    console.log("Selected Course ID:", selectedCourseId); // Debug: Check the selected course ID
-    console.log("All Students:", students); // Debug: List all students
-    console.log("All Courses:", courses); // Debug: List all courses
-
     if (!selectedCourseId) {
-      return students; // If no course is selected, return all students
+      return students;
     }
 
-    const filteredStudents = students.filter((student) => {
-      // Convert both to strings for comparison to avoid type mismatch issues
+    return students.filter((student) => {
       return student.course_id.toString() === selectedCourseId.toString();
     });
-
-    console.log("Filtered Students:", filteredStudents); // See the filtered list
-    return filteredStudents;
   };
 
   const handleDelete = async (studentId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete?");
     if (!confirmDelete) {
-      return; // Cancel deletion if user clicks cancel
+      return;
     }
 
     try {
@@ -93,13 +83,13 @@ function StudentList() {
   }
 
   return (
-    <div className="px-5 mt-3">
+    <div className="main-content">
       <h2 className="student-list-title">Student List</h2>
-      <div className="d-flex justify-content-between mb-3">
-        <Link to="/sidebar" className="btn1-back">
+      <div className="toolbar">
+        <Link to="/sidebar" className="btn btn-back">
           Back
         </Link>
-        <Link to="/add_student" className="btn1-add">
+        <Link to="/add_student" className="btn btn-add">
           Add Student
         </Link>
         <div>
@@ -140,7 +130,7 @@ function StudentList() {
         <tbody>
           {getFilteredStudentsByCourse().map((student) => (
             <tr key={student.student_id}>
-              <td className="student-name">
+              <td>
                 <Link to={`/student-details/${student.student_id}`}>
                   {student.firstname} {student.lastname}
                 </Link>
@@ -156,13 +146,13 @@ function StudentList() {
               <td>
                 <Link
                   to={`/edit-student/${student.student_id}`}
-                  className="btn1-edit"
+                  className="btn btn-edit"
                 >
                   Edit
                 </Link>
                 <button
                   onClick={() => handleDelete(student.student_id)}
-                  className="btn1-delete"
+                  className="btn btn-delete"
                 >
                   Delete
                 </button>

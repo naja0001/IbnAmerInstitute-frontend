@@ -1,0 +1,87 @@
+/*-----------teacher------------*/
+
+.teacher {
+  width: 100%;
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.teacher-left-content {
+  background: var(--light-green);
+  padding: 8rem 6rem;
+  text-align: center;
+  width: 1000px;
+  height: 90vh;
+  margin: 2% 5%;
+  box-shadow: -30px 30px var(--green);
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.teacher-img img {
+  display: block;
+  width: 300px;
+}
+
+.teacher-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 190px;
+  height: 210px;
+  margin: -20% 20%;
+  overflow: hidden;
+}
+.teacher-left-content h2 {
+  margin-top: 10rem;
+}
+
+.teacher-left-content h3 {
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 5px;
+  margin-top: 2rem;
+}
+
+.teacher-right {
+  margin: 2% 5%;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.teacher-right h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+
+.teacher-right h2 {
+  font-weight: 600;
+}
+
+.teacher-right p {
+  width: 100%;
+  margin-top: 10%;
+  line-height: 2;
+}
+
+.teacher-right h2 span {
+  color: var(--green);
+}
+
+@media screen and (max-width: 992px) {
+  .teacher {
+    flex-direction: column;
+  }
+  .teacher-left-content {
+    width: 450px;
+  }
+}

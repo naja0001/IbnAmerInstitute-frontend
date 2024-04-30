@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   getCourses,
   getClasses,
   getTeachers,
   deleteCourse,
-  updateCourse,
 } from "../../services/ApiService";
-import "./../../Assets/styles/styles.css";
+import "../../Assets/styles/student.css";
 
 const CoursesWithClasses = () => {
   const [courses, setCourses] = useState([]);
@@ -16,7 +15,6 @@ const CoursesWithClasses = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,10 +61,10 @@ const CoursesWithClasses = () => {
       <div className="d-flex justify-content-center">
         <h3>Course List</h3>
       </div>
-      <Link to="/sidebar" className="btn1 btn-primary">
+      <Link to="/sidebar" className="btn btn-primary">
         Back
       </Link>
-      <Link to="/sidebar/add_course" className="btn1 btn-success">
+      <Link to="/sidebar/add_course" className="btn btn-success">
         Add Course
       </Link>
       <div className="mt-3">
@@ -82,7 +80,7 @@ const CoursesWithClasses = () => {
               <tr key={course.course_id}>
                 <td>
                   <button
-                    className="btn1"
+                    className="btn"
                     onClick={() => toggleCourse(course.course_id)}
                   >
                     {course.course_name}
@@ -90,14 +88,14 @@ const CoursesWithClasses = () => {
                 </td>
                 <td>
                   <button
-                    className="btn1 btn-danger"
+                    className="btn btn-danger"
                     onClick={() => handleDeleteCourse(course.course_id)}
                   >
                     Delete
                   </button>
                   <Link
                     to={`/edit-course/${course.course_id}`}
-                    className="btn1 btn-primary btn-sm me-2"
+                    className="btn btn-primary btn-sm me-2"
                   >
                     Edit
                   </Link>
@@ -107,21 +105,16 @@ const CoursesWithClasses = () => {
                       <ul>
                         {classes
                           .filter((cls) => cls.course_id === course.course_id)
-                          .map((cls) => {
-                            const teacher = teachers.find(
-                              (t) => t.teacher_id === cls.teacher_id
-                            );
-                            return (
-                              <li key={cls.class_id}>
-                                Class Duration: {cls.duration}
-                                <br />
-                                Teacher:{" "}
-                                {teacher
-                                  ? `${teacher.title} ${teacher.firstname} ${teacher.lastname}`
-                                  : "Unknown"}
-                              </li>
-                            );
-                          })}
+                          .map((cls) => (
+                            <li key={cls.class_id}>
+                              Class Duration: {cls.duration}
+                              <br />
+                              Teacher:{" "}
+                              {teachers.find(
+                                (t) => t.teacher_id === cls.teacher_id
+                              )?.firstname || "Unknown"}
+                            </li>
+                          ))}
                       </ul>
                     </div>
                   )}

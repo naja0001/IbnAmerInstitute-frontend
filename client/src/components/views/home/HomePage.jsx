@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGraduationCap, faUser } from "@fortawesome/free-solid-svg-icons";
 import { IconContext } from "react-icons";
 import "../../../Assets/styles/styles.css";
+import "../../navbar/navbar.css";
+import "../courses/courses.css";
 
 const HomePage = () => {
   return (
@@ -24,7 +26,7 @@ const HomePage = () => {
               `De bedste blandt jer muslimer er dem, der lærer Koranen og
               underviser i den.`
             </p>
-            <Link to="/contactUs" className="btn ">
+            <Link to="/contactUs" className="btn1 ">
               Tilmeld dig en introdag
             </Link>
           </div>

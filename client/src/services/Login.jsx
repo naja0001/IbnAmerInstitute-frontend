@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../Assets/Images/logo.png";
 import Loader from "../components/loader/Loader";
@@ -79,23 +79,14 @@ const Login = () => {
                   required
                 />
               </div>
-              <div className="remember-forgot">
-                <label>
-                  <input type="checkbox" />
-                  Remember me
-                </label>
-                <a href="#">Forgot password</a>
-              </div>
+
               <button type="submit" className="btn">
                 Login
               </button>
-              <div className="register-link">
-                <p>
-                  Don't have an account <a href="#">Register</a>
-                </p>
-              </div>
+              <div className="register-link"></div>
             </form>
           </div>
+          {error && <div className="error">{error}</div>}
         </section>
       </div>
     </>

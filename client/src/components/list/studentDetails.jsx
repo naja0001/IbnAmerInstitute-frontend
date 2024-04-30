@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   getHomeworkById,
@@ -6,7 +6,6 @@ import {
   getAttendanceById,
   updateAttendance,
 } from "../../services/ApiService";
-import "./../../Assets/styles/studentDetail.css";
 
 const StudentDetails = () => {
   const navigate = useNavigate();
@@ -150,7 +149,7 @@ const StudentDetails = () => {
       navigate("/sidebar/students");
     } catch (error) {
       console.error("Save failed:", error);
-      alert(`Error during save: ${error.message}`);
+      // alert(Error during save: ${error.message});
 
       return; // Exit if homework update fails
     }
@@ -161,7 +160,7 @@ const StudentDetails = () => {
       alert("Attendance updated successfully!");
     } catch (error) {
       console.error("Save failed:", error);
-      alert(`Error during save: ${error.message}`);
+      // alert(Error during save: ${error.message});
     }
   };
 
@@ -170,10 +169,13 @@ const StudentDetails = () => {
 
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+      <Link className="btn" to="/sidebar/students">
+        Back to List
+      </Link>
+
       <h1 style={{ textAlign: "center" }}>Student Details</h1>
       <form onSubmit={handleSave}>
         {/* Attendance fields */}
-
         <label>Attendance Date:</label>
         <input
           type="date"
@@ -181,7 +183,6 @@ const StudentDetails = () => {
           value={state.attendance.attendanceDate}
           onChange={handleChange}
         />
-
         <label>Present:</label>
         <input
           type="checkbox"
@@ -189,7 +190,15 @@ const StudentDetails = () => {
           checked={state.attendance.isPresent}
           onChange={handleChange}
         />
-
+        <label>Not present:</label>
+        <input
+          type="checkbox"
+          name="isNotPresent"
+          checked={state.attendance.isPresent}
+          onChange={handleChange}
+        />
+        <br /> {/* Line break */}
+        <br /> {/* Line break */}
         <label>Assignment Name:</label>
         <input
           type="text"
@@ -200,7 +209,6 @@ const StudentDetails = () => {
         {state.errors.assignmentName && (
           <div>{state.errors.assignmentName}</div>
         )}
-
         <label>Description:</label>
         <input
           type="text"
@@ -209,7 +217,6 @@ const StudentDetails = () => {
           onChange={handleChange}
         />
         {state.errors.description && <div>{state.errors.description}</div>}
-
         <label>Due Date:</label>
         <input
           type="date"
@@ -218,7 +225,6 @@ const StudentDetails = () => {
           onChange={handleChange}
         />
         {state.errors.dueDate && <div>{state.errors.dueDate}</div>}
-
         <label>Completed:</label>
         <input
           type="checkbox"
@@ -226,7 +232,15 @@ const StudentDetails = () => {
           checked={state.homework.isCompleted}
           onChange={handleChange}
         />
-
+        <label>Not Completed:</label>
+        <input
+          type="checkbox"
+          name="isCompleted"
+          checked={state.homework.isCompleted}
+          onChange={handleChange}
+        />
+        <br /> {/* Line break */}
+        <br /> {/* Line break */}
         <label>Completion Date:</label>
         <input
           type="date"
@@ -235,7 +249,6 @@ const StudentDetails = () => {
           onChange={handleChange}
           disabled={!state.homework.isCompleted} // Disable if not completed
         />
-
         <label>Grade:</label>
         <select
           name="grade"
@@ -249,11 +262,8 @@ const StudentDetails = () => {
           <option value="Poor">Poor</option>
         </select>
         {state.errors.grade && <div>{state.errors.grade}</div>}
-
         <button type="submit">Save Changes</button>
       </form>
-
-      <Link to="/sidebar/students">Back to List</Link>
     </div>
   );
 };

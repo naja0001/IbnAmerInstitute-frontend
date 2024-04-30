@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import course1 from "../../../Assets/Images/course1.png";
 import course2 from "../../../Assets/Images/course2.jpg";
 import course3 from "../../../Assets/Images/course3.jpg";
+import "./courses.css";
 
 const Courses = () => {
   return (
@@ -9,7 +10,7 @@ const Courses = () => {
       <h1>Kursus vi tilbyder</h1>
       <p>Vi tilbyder 3 kurser, der henvender sig til alle aldre og niveauer.</p>
 
-      <div className="container">
+      <div className="courses_container">
         <Link to="/udenadslaering" className="course_sprite" id="course1">
           <img src={course1} alt="Course 1" />
           <div className="label">

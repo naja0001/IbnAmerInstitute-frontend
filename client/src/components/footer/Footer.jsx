@@ -4,6 +4,8 @@ import {
   faEnvelope,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import "./footer.css";
 
 const Footer = () => {
   return (
@@ -57,7 +59,32 @@ const Footer = () => {
         </div>
         <div className="footer-menu" id="footer-sprite">
           <h4>Menu</h4>
-          <ul>{/* Add your footer menu links here */}</ul>
+          <ul>
+            <li>
+              <Link to="/">HJEM</Link>
+            </li>
+            <li>
+              <Link to="/about-us">OM OS</Link>
+            </li>
+            <li>
+              <Link to="/Udenadslaering">UDENADSLÆRING</Link>
+            </li>
+            <li>
+              <Link to="/tajweed">TAJWEED</Link>
+            </li>
+            <li>
+              <Link to="/Ijazah">IJAZAH</Link>
+            </li>
+            <li>
+              <Link to="/teachers">UNDERVISER</Link>
+            </li>
+            <li>
+              <Link to="/elever">ELEVER</Link>
+            </li>
+            <li>
+              <Link to="/contactUs">KONTAKT OS</Link>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

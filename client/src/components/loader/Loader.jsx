@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "../../Assets/styles/styles.css"; // Import your loader styles
+import "./loader.css"; // Import your loader styles
 
 const Loader = () => {
   useEffect(() => {

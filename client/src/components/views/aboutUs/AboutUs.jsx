@@ -2,8 +2,8 @@ import Footer from "../../footer/Footer"; // Import the Navbar component
 import Navbar from "../../navbar/NavbarViews"; // Import the Navbar component
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../../Assets/styles/styles.css";
-//import "./kurser.css";
 import Loader from "../../loader/Loader";
+import "../aboutUs/aboutUs.css";
 
 const AboutUs = () => {
   return (
@@ -16,8 +16,8 @@ const AboutUs = () => {
           <div className="text-box1">
             <h1>Om os</h1>
             <p>
-              "Vi tilbyder kurser, der henvender sig til alle aldre og
-              niveauer."
+              `Vi tilbyder kurser, der henvender sig til alle aldre og
+              niveauer.`
             </p>
           </div>
         </header>
@@ -26,7 +26,7 @@ const AboutUs = () => {
           <h1>Hvem er Ibn Amer Institute?</h1>
           <p>
             Vi er en uddannelsesinstution der specialisere sig udenfor
-            reciitationsstile (qira'at) og koranens videnskaber. <br />
+            reciitationsstile qiraat og koranens videnskaber. <br />
             <br />
             Vi specialisere os også indefor udenadslære af koranen, og arbejder
             for at sprede koranens videnskaber vidt og bredt. <br />

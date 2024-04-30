@@ -1,0 +1,33 @@
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(254, 254, 254);
+  z-index: 999;
+}
+
+.loader::after {
+  content: "";
+  border: 30px solid var(--yellow);
+  border-top-color: var(--yellow);
+  z-index: 999;
+  animation: loading 5s infinite;
+}
+
+.loader--hidden {
+  display: none;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

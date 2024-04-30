@@ -1,0 +1,173 @@
+/*------------footer-----------*/
+
+.footer {
+  background-color: #24262b;
+  padding: 50px 0;
+  position: relative;
+  width: auto;
+  height: 80vh;
+  padding: 50px 100px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer p {
+  font-size: 12px;
+}
+
+.footer-container {
+  display: flex;
+
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.footer-omos {
+  width: 40%;
+}
+
+.footer h4 {
+  position: relative;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+}
+
+.footer h4:before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 70px;
+  height: 2px;
+  background-image: linear-gradient(to left, transparent 5%, var(--yellow));
+}
+
+.footer-omos p {
+  color: #999;
+}
+
+.footer-socials {
+  margin-top: 20px;
+  display: flex;
+}
+
+.footer-socials li {
+  list-style: none;
+}
+
+.footer-socials li a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.footer-socials li a .fa {
+  color: #fff;
+  font-size: 20px;
+  position: absolute;
+}
+
+.footer-menu {
+  position: relative;
+  width: 15%;
+}
+
+.footer-menu ul li {
+  list-style: none;
+}
+
+.footer-menu ul li a {
+  color: #999;
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.footer-menu li a:hover {
+  color: #fff;
+}
+
+.footer-kontaktos {
+  color: #999;
+  width: 20%;
+}
+
+.footer-kontaktos ul {
+  position: relative;
+}
+
+.footer-kontaktos .fa {
+  position: absolute;
+  font-size: 15px;
+  left: -2%;
+  margin-top: 5px;
+}
+
+.footer-kontaktos li {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.footer-kontaktos li span {
+  color: #999;
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.footer-kontaktos li a {
+  color: #999;
+  text-decoration: none;
+}
+
+.footer-kontaktos li a:hover {
+  color: #fff;
+}
+
+.footer ul li a:hover {
+  color: #fff;
+  transform: translate(-12px);
+  transition: 0.5s;
+}
+
+@media (max-width: 800px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+    margin-top: 0;
+  }
+  #footer-sprite {
+    margin-top: 10%;
+  }
+  .footer {
+    padding: 30px 25px;
+    height: 180vh;
+  }
+  .footer-socials li a {
+    width: 20px;
+    height: 20px;
+  }
+  .footer .fa {
+    font-size: 15px;
+  }
+  .footer h4:before {
+    left: 0%;
+  }
+  .footer-kontaktos,
+  .footer-menu,
+  .footer-omos {
+    width: 100%;
+  }
+}

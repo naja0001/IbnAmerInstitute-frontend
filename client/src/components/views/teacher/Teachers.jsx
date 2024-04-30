@@ -6,6 +6,7 @@ import "../../../Assets/styles/styles.css";
 import Footer from "../../footer/Footer"; // Import the Navbar component
 import Reviews from "../../reviews/Reviews";
 import Loader from "../../loader/Loader";
+import "./teacher.css";
 
 const teachers = () => {
   return (

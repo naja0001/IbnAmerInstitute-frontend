@@ -1,4 +1,3 @@
-import React from "react";
 import HomeSharpIcon from "@mui/icons-material/HomeSharp";
 import MailSharpIcon from "@mui/icons-material/MailSharp";
 import CalendarMonthSharpIcon from "@mui/icons-material/CalendarMonthSharp";

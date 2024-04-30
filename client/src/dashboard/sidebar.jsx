@@ -1,8 +1,7 @@
-import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
-
-import QuranLessonCalendar from "../dashboard/calender";
+import "./sidebar.css";
+import QuranLessonCalendar from "./calender";
 
 const Sidebar = () => {
   return (
@@ -15,22 +14,13 @@ const Sidebar = () => {
               className="d-flex align-items-center pb-3 mb-md-1 mt-md-3 me-md-auto text-white text-decoration-none"
             >
               <span className="fs-5 fw-bolder d-none d-sm-inline">
-                Ibn Caamir Institute
+                Ibn Amer Institute
               </span>
             </Link>
             <ul
               className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
               id="menu"
             >
-              <li className="w-100">
-                <Link
-                  to="/sidebar"
-                  className="nav-link text-white px-0 align-middle"
-                >
-                  <i className="fs-4 bi-speedometer2 ms-2"></i>
-                  <span className="ms-2 d-none d-sm-inline">Sidebar</span>
-                </Link>
-              </li>
               <li className="w-100">
                 <Link
                   to="/sidebar/students"
@@ -62,12 +52,10 @@ const Sidebar = () => {
         </div>
         <div className="col p-0 m-0">
           <div className="p-2 d-flex justify-content-center shadow">
-            <h4>Ibn Caamir Institute</h4>
+            <h4>Ibn Amer Institute</h4>
           </div>
           <div className="p-2">
-            {/* Content inside the main area */}
             <Outlet />
-            {/* Render QuranLessonCalendar directly */}
             <QuranLessonCalendar />
           </div>
         </div>

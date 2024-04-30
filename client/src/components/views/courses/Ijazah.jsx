@@ -1,11 +1,11 @@
-import Navbar from "../../navbar/NavbarViews"; // Import the Navbar component
+import Navbar from "../../navbar/NavbarViews";
 import ijazah1 from "../../../Assets/Images/ijazah1.jpg";
 import ijazah2 from "../../../Assets/Images/ijazah2.jpeg";
 import ijazah3 from "../../../Assets/Images/ijazah3.jpg";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../../Assets/styles/styles.css";
-import "./kurser.css";
-import Footer from "../../footer/Footer"; // Import the Navbar component
+import "./courses.css";
+import Footer from "../../footer/Footer";
 import Reviews from "../../reviews/Reviews";
 import Loader from "../../loader/Loader";
 

@@ -1,7 +1,7 @@
 import Navbar from "../../navbar/NavbarViews";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../../Assets/styles/styles.css";
-import "./kontaktos.css";
+import "./contactUs.css";
 import "../../../Assets/styles/login.css";
 import emailjs from "@emailjs/browser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -155,7 +155,7 @@ const ContactUs = () => {
                     {!valid && <p>Please enter a valid phone number.</p>}
                   </div>
 
-                  <button type="submit" value="send" className="btn">
+                  <button type="submit" value="send" className="btn1">
                     Tilmeld dig
                   </button>
                   {showSuccessMessage && (

@@ -1,7 +1,7 @@
 import Navbar from "../../navbar/NavbarViews"; // Import the Navbar component
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../../Assets/styles/styles.css";
-import "./kurser.css";
+import "./courses.css";
 import "../students/elever.css";
 import Footer from "../../footer/Footer"; // Import the Navbar component
 import Reviews from "../../reviews/Reviews";

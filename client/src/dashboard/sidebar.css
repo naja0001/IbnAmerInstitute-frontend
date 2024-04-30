@@ -69,3 +69,15 @@ body {
   flex: 1; /* Fill the remaining space */
   /* Other calendar styles */
 }
+
+.rbc-ellipsis,
+.rbc-show-more,
+.rbc-row-segment .rbc-event-content,
+.rbc-event-label {
+  color: black;
+}
+
+.sidebar {
+  z-index: 999;
+  overflow: hidden;
+}

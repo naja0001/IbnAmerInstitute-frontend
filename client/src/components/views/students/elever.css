@@ -97,8 +97,6 @@
   background-color: var(--green);
 }
 
-/* Your existing styles for testimonials go here */
-
 #testimonialCarousel {
   overflow: hidden;
   margin-top: 20px;

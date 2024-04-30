@@ -3,7 +3,7 @@ import forløb1 from "../../../Assets/Images/forløb1.jpg";
 import forløb2 from "../../../Assets/Images/forløb2.jpg";
 import forløb3 from "../../../Assets/Images/forløb3.jpg";
 import "../../../Assets/styles/styles.css";
-import "./kurser.css";
+import "./courses.css";
 import Footer from "../../footer/Footer"; // Import the Navbar component
 import Loader from "../../loader/Loader";
 
@@ -27,7 +27,7 @@ const Udenadslæring = () => {
         <section className="courses" id="cards">
           <h1>Udenadslæring</h1>
           <p>Linjer for udenadslære</p>
-          <div className="container">
+          <div className="courses_container">
             <div className="course_sprite" id="course1">
               <img src={forløb1} alt="forløb1" />
               <div className="label">

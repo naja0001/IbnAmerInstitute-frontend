@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getCourseById, updateCourse } from "../services/ApiService";
 
@@ -52,6 +52,7 @@ const EditCourse = () => {
     try {
       await updateCourse(courseId, {
         course_name: formData.course_name,
+        // Include teacher details in the update request
         teacher_title: formData.title,
         teacher_firstname: formData.firstname,
         teacher_lastname: formData.lastname,

@@ -1,22 +1,16 @@
 import { API_URL } from "../../settings.js";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://ibnamerinstitue.azurewebsites.net";
 
-export const STUDENTS_URL = API_URL + "/students";
-export const LOGIN_URL = API_URL + "/auth/login";
-export const TEACHERS_URL = API_URL + "/teachers";
-export const COURSES_URL = API_URL + "/courses";
-export const CLASSES_URL = API_URL + "/classes";
-export const STUDENT_CLASSES_URL = API_URL + "/student-classes";
-export const QURAN_PROGRESS_URL = API_URL + "/quranProgress";
-export const HOMEWORK_URL = API_URL + "/homework";
-export const ATTENDANCE_URL = API_URL + "/attendance";
+export const STUDENTS_URL = BASE_URL + "/students";
 
-export interface Login {
-  id: null;
-  email: string;
-  password: string;
-}
+export const TEACHERS_URL = BASE_URL + "/teachers";
+export const COURSES_URL = BASE_URL + "/courses";
+export const CLASSES_URL = BASE_URL + "/classes";
+export const STUDENT_CLASSES_URL = BASE_URL + "/student-classes";
+export const QURAN_PROGRESS_URL = BASE_URL + "/quranProgress";
+export const HOMEWORK_URL = BASE_URL + "/homework";
+export const ATTENDANCE_URL = BASE_URL + "/attendance";
 
 export interface Student {
   student_id: number;
@@ -44,7 +38,7 @@ export interface Course {
 
 export interface Class {
   class_id: number;
-  course_id: number;
+  course_id: number; // Make sure this matches the type of course_id in Course
   teacher_id: number;
   duration: string;
 }
@@ -71,36 +65,17 @@ interface Homework {
   assignment_name: string;
   description: string;
   due_date: Date;
-  is_completed: Boolean;
-  completion_date: Date;
-  grade: String;
 }
 
-export const createLogin = async (loginData) => {
-  try {
-    const response = await fetch(LOGIN_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    });
-
-    // Parse JSON first to use in both success and error handling
-    const responseData = await response.json();
-
-    if (!response.ok) {
-      console.error("Create login error response:", responseData);
-      throw new Error(responseData.message || "Failed to create login");
-    }
-
-    console.log("Response from the login attempt:", responseData);
-    return responseData;
-  } catch (error) {
-    console.error("Error creating login:", error);
-    throw error; // Re-throw to handle it further up in your React components
-  }
-};
+// QuranProgress interface
+interface QuranProgress {
+  progress_id: number;
+  student_id: number;
+  chapter_number: number;
+  is_completed: boolean;
+  completion_date: Date;
+  grade: string;
+}
 
 //students
 export const getStudent = async () => {
@@ -238,24 +213,18 @@ export const getCourses = async () => {
   }
 };
 
+// In your ApiService
 export const getCourseById = async (id) => {
   try {
     const response = await fetch(`${COURSES_URL}/${id}`);
     if (!response.ok) {
-      const errorResponse = await response.json(); // Ensures we capture any additional error messages
-      if (response.status === 404) {
-        throw new Error(`Course not found: ${errorResponse.message || ""}`);
-      } else {
-        throw new Error(
-          `Failed to fetch course: ${errorResponse.message || "Unknown error"}`
-        );
-      }
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || "Failed to fetch course");
     }
-    const course = await response.json();
-    return course;
+    return await response.json();
   } catch (error) {
-    console.error("Error fetching course data:", error);
-    throw error; // Rethrowing the error to ensure that the caller knows an error occurred.
+    console.error("Error fetching course:", error);
+    throw error;
   }
 };
 
@@ -280,23 +249,40 @@ export const createCourse = async (courseData) => {
   }
 };
 
-export const updateCourse = async (id, courseData) => {
+// In ApiService.tsx
+
+/**
+ * Update a course by its ID.
+ * @param {string} id - The ID of the course to update.
+ * @param {Object} courseData - New data for the course.
+ * @returns {Promise<Object>} The updated course data.
+ */
+export const updateCourse = async (
+  id: number,
+  courseData: any
+): Promise<any> => {
   try {
+    if (!id) {
+      throw new Error("Invalid course ID");
+    }
+
     const response = await fetch(`${COURSES_URL}/${id}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(courseData),
     });
+
     if (!response.ok) {
       const errorResponse = await response.json();
-      throw new Error(errorResponse.message || "Failed to update course");
+      const errorMessage = errorResponse.message || "Failed to update course";
+      throw new Error(errorMessage);
     }
-    return await response.json();
+
+    const responseData = await response.json();
+    return responseData;
   } catch (error) {
     console.error("Error updating course:", error);
-    throw error; // Rethrowing the error to ensure that the caller knows an error occurred.
+    throw error;
   }
 };
 
@@ -352,23 +338,25 @@ export const getClassById = async (id) => {
 //classes
 export const createClass = async (classData) => {
   try {
-    const response = await fetch(`${CLASSES_URL}`, {
+    const response = await fetch(CLASSES_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(classData),
     });
-
+    const responseData = await response.json(); // Parse JSON response regardless of the response status
     if (!response.ok) {
-      const errorResponse = await response.json();
-      throw new Error(`Failed to create class: ${errorResponse.error}`);
+      // Log and throw detailed error information from the server
+      console.error("Failed to create class:", responseData);
+      throw new Error(
+        `Failed to create class: ${responseData.error || "Unknown error"}`
+      );
     }
-
-    return await response.json();
+    return responseData;
   } catch (error) {
-    console.error("Error creating class:", error);
-    throw error;
+    console.error("Error creating class:", error.message);
+    throw error; // Consider handling this thrown error if not already being handled
   }
 };
 
@@ -443,24 +431,18 @@ export const createTeacher = async (teacherData) => {
       },
       body: JSON.stringify(teacherData),
     });
-
-    // Convert the response to JSON and store in a variable
-    const data = await response.json(); // Ensure this happens once
     if (!response.ok) {
-      throw new Error("Failed to create teacher");
+      const errorData = await response.json();
+      console.error("Error creating teacher:", errorData);
+      throw new Error(`Failed to create teacher: ${errorData.message}`);
     }
-
-    return data;
+    return await response.json();
   } catch (error) {
-    console.error(
-      `Error creating teacher (Status code: ${
-        error.response ? error.response.status : "Unknown"
-      }):`,
-      error.message
-    );
-    throw error; // Rethrow the error after logging
+    console.error("Error creating teacher:", error.message);
+    throw error;
   }
 };
+
 export const updateTeacher = async (teacherId, teacherData) => {
   try {
     const response = await fetch(`${TEACHERS_URL}/${teacherId}`, {
@@ -528,7 +510,7 @@ export const getAttendanceById = async (id: number): Promise<Attendance> => {
   }
 };
 
-export const createAttendance = async (attendanceData) => {
+export const createAttendance = async (attendanceData: Attendance) => {
   try {
     const response = await fetch(ATTENDANCE_URL, {
       method: "POST",
@@ -537,38 +519,39 @@ export const createAttendance = async (attendanceData) => {
       },
       body: JSON.stringify(attendanceData),
     });
-
     if (!response.ok) {
       const errorResponse = await response.json();
-      throw new Error(errorResponse.message || "Error creating attendance");
+      console.error("Create attendance error response:", errorResponse);
+      throw new Error(errorResponse.error || "Failed to create attendance");
     }
-
     return await response.json();
   } catch (error) {
-    console.error("Create attendance error response:", error);
-    throw error;
+    console.error("Error creating attendance:", error);
+    throw error; // Throw the error to be caught by the calling function
   }
 };
 
-// ApiService.tsx
-// ApiService.tsx
-export const updateAttendance = async (studentId, attendanceData) => {
+export const updateAttendance = async (
+  id: number,
+  data: Attendance
+): Promise<Attendance> => {
   try {
-    const response = await fetch(`${ATTENDANCE_URL}/${studentId}`, {
+    const response = await fetch(`${ATTENDANCE_URL}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(attendanceData),
+      body: JSON.stringify(data),
     });
     if (!response.ok) {
-      const message = `Error: Failed to update attendance, received status ${response.status}`;
-      throw new Error(message);
+      const errorResponse = await response.json();
+      console.error("Update attendance error response:", errorResponse);
+      throw new Error(errorResponse.error || "Failed to update attendance");
     }
     return await response.json();
   } catch (error) {
     console.error("Error updating attendance:", error);
-    throw error;
+    throw error; // Throw the error to be caught by the calling function
   }
 };
 
@@ -626,11 +609,8 @@ export async function createHomework(data: Homework): Promise<Homework> {
     }
     return await response.json();
   } catch (error) {
-    console.error(
-      "Network error or other issue when creating homework:",
-      error
-    );
-    throw new Error("Network error or unable to contact the server");
+    console.error("Error creating homework:", error);
+    throw error; // Rethrow the error to handle it in the calling component
   }
 }
 
@@ -671,5 +651,90 @@ export async function deleteHomework(id: number): Promise<void> {
   } catch (error) {
     console.error("Error deleting homework:", error);
     throw error; // Rethrow the error to handle it in the calling function
+  }
+}
+
+// ApiService.js
+
+export async function getQuranProgressById(id) {
+  try {
+    const response = await fetch(`${QURAN_PROGRESS_URL}/${id}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch Quran progress for student ${id}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error; // Rethrow the error to be handled in the component
+  }
+}
+
+export async function createQuranProgress(
+  data: QuranProgress
+): Promise<QuranProgress> {
+  try {
+    const response = await fetch(QURAN_PROGRESS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      console.error("Create Quran progress error response:", errorResponse);
+      throw new Error(
+        errorResponse.message || "Failed to create Quran progress"
+      );
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error creating Quran progress:", error);
+    throw error; // Rethrow the error to handle it in the calling component
+  }
+}
+
+export async function updateQuranProgress(
+  id: number,
+  data: QuranProgress
+): Promise<QuranProgress> {
+  try {
+    const response = await fetch(`${QURAN_PROGRESS_URL}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      console.error("Update Quran progress error response:", errorResponse);
+      throw new Error(
+        errorResponse.message || "Failed to update Quran progress"
+      );
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error updating Quran progress:", error);
+    throw error; // Rethrow the error to handle it in the calling component
+  }
+}
+
+export async function deleteQuranProgress(id: number): Promise<void> {
+  try {
+    const response = await fetch(`${QURAN_PROGRESS_URL}/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      const errorResponse = await response.json();
+      console.error("Delete Quran progress error response:", errorResponse);
+      throw new Error(
+        errorResponse.message || "Failed to delete Quran progress"
+      );
+    }
+  } catch (error) {
+    console.error("Error deleting Quran progress:", error);
+    throw error; // Rethrow the error to handle it in the calling component
   }
 }

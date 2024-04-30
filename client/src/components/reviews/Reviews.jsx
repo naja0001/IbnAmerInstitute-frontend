@@ -8,7 +8,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const Reviews = () => {
   return (
     <div className="testimonial-area">
-      <div className="container">
+      <div className="courses_container">
         <div className="row">
           <div className="col-sm-12">
             <div className="section-header text-center">
