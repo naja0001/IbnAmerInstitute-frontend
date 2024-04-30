@@ -88,21 +88,20 @@ export const createLogin = async (loginData) => {
       body: JSON.stringify(loginData),
     });
 
-    // Parse JSON first to use in both success and error handling
-    const responseData = await response.json();
-
     if (!response.ok) {
-      console.error("Create login error response:", responseData);
-      throw new Error(responseData.message || "Failed to create login");
+      // If the response status is not OK, log and throw error before trying to parse JSON
+      console.error("Login request failed with status:", response.status);
+      throw new Error("Login failed. Please try again later.");
     }
 
-    console.log("Response from the login attempt:", responseData);
+    const responseData = await response.json();
     return responseData;
   } catch (error) {
-    console.error("Error creating login:", error);
-    throw error; // Re-throw to handle it further up in your React components
+    console.error("Error in login:", error);
+    throw error;
   }
 };
+
 //students
 export const getStudent = async () => {
   try {
