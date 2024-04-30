@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "vite",
+    "start": "serve -s dist -l 3000",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "echo 'npm run dev'"
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
@@ -38,6 +39,7 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
-    "vite": "^5.2.0"
+    "vite": "^5.2.0",
+    "serve": "^13.0.2"
   }
 }
