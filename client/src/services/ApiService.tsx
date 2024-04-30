@@ -13,6 +13,11 @@ export const QURAN_PROGRESS_URL = BASE_URL + "/quranProgress";
 export const HOMEWORK_URL = BASE_URL + "/homework";
 export const ATTENDANCE_URL = BASE_URL + "/attendance";
 
+export interface longin {
+  email: String;
+  password: String;
+}
+
 export interface Student {
   student_id: number;
   firstname: string;
@@ -88,17 +93,28 @@ export const createLogin = async (loginData) => {
       body: JSON.stringify(loginData),
     });
 
-    if (!response.ok) {
-      // If the response status is not OK, log and throw error before trying to parse JSON
-      console.error("Login request failed with status:", response.status);
-      throw new Error("Login failed. Please try again later.");
+    let responseData;
+    if (response.headers.get("Content-Type")?.includes("application/json")) {
+      responseData = await response.json();
+    } else {
+      responseData = { message: "Non-JSON response received" };
     }
 
-    const responseData = await response.json();
+    if (!response.ok) {
+      console.error("Create login error response:", responseData);
+      throw new Error(
+        responseData.message ||
+          `Failed to create login: Status ${response.status}`
+      );
+    }
+
+    console.log("Response from the login attempt:", responseData);
     return responseData;
   } catch (error) {
-    console.error("Error in login:", error);
-    throw error;
+    console.error("Error creating login:", error);
+    throw new Error(
+      `Login process failed: ${error.message || "Unknown error"}`
+    );
   }
 };
 
