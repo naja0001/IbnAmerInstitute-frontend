@@ -1,9 +1,9 @@
-import Navbar from "../../navbar/NavbarViews"; // Import the Navbar component
+import Navbar from "../../navbar/NavbarViews";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../../Assets/styles/styles.css";
 import "./courses.css";
 import "../students/elever.css";
-import Footer from "../../footer/Footer"; // Import the Navbar component
+import Footer from "../../footer/Footer";
 import Reviews from "../../reviews/Reviews";
 import Loader from "../../loader/Loader";
 

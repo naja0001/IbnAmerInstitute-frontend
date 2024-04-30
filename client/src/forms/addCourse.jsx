@@ -10,7 +10,7 @@ const AddCourse = () => {
   const [formData, setFormData] = useState({
     course_name: "",
     class_duration: "",
-    title: "", // New field for teacher's title
+    title: "",
     firstname: "",
     lastname: "",
     email: "",
@@ -26,7 +26,7 @@ const AddCourse = () => {
     if (
       !formData.course_name ||
       !formData.class_duration ||
-      !formData.title || // Ensure title is filled in
+      !formData.title ||
       !formData.firstname ||
       !formData.lastname ||
       !formData.email ||
@@ -49,7 +49,7 @@ const AddCourse = () => {
         lastname: formData.lastname,
         email: formData.email,
         number: formData.number,
-        title: formData.title, // Include title in the request
+        title: formData.title,
       });
       console.log("Teacher created:", teacherResponse);
 

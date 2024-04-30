@@ -30,7 +30,7 @@ const Login = () => {
       if (result.loginStatus) {
         console.log("Login successful, navigating to sidebar...");
         localStorage.setItem("valid", true);
-        navigate("/sidebar"); // Redirects to another route on successful login
+        navigate("/sidebar");
       } else {
         console.log("Login failed with error:", result.Error);
         setError(result.Error || "Invalid credentials");

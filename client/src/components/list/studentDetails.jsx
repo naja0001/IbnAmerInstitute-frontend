@@ -77,8 +77,6 @@ const StudentDetails = () => {
   };
 
   const validateForm = () => {
-    // You will need to implement validation for attendance if required
-    // For now, only homework validation is implemented
     let errors = {};
     let formIsValid = true;
     const fields = state.homework;
@@ -151,7 +149,7 @@ const StudentDetails = () => {
       console.error("Save failed:", error);
       // alert(Error during save: ${error.message});
 
-      return; // Exit if homework update fails
+      return;
     }
 
     // Update Attendance

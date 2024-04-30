@@ -1,5 +1,11 @@
 /*------------students-----------*/
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: "Arial", sans-serif;
   margin: 0;
@@ -87,17 +93,17 @@ li p {
 
 /* course.css */
 .course-row:hover {
-  background-color: gray; /* Light grey background on hover */
+  background-color: gray;
   cursor: pointer;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr; /* Sidebar takes auto width, StudentList takes remaining space */
+  grid-template-columns: 1fr;
 }
 
 .student-list-container {
-  margin: 0 auto; /* Center the container */
+  margin: 0 auto;
 }
 
 /* student.css */
@@ -250,21 +256,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* General Reset */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/*
-body {
-  font-family: "Arial", sans-serif;
-  line-height: 1.6;
-  background-color: #f4f4f4;
-  padding: 20px;
-}*/
-
 .container {
   max-width: 600px;
   margin: auto;
@@ -306,7 +297,6 @@ button:hover {
   background-color: #4cae4c;
 }
 
-/* Back to List Link */
 .back-to-list {
   text-decoration: none;
   color: #333;
@@ -314,7 +304,6 @@ button:hover {
   margin-top: 20px;
 }
 
-/* Styling for Update and Save buttons */
 .update-button {
   background-color: #f0ad4e;
   margin-right: 5px;
@@ -342,12 +331,10 @@ label {
   cursor: pointer;
 }
 
-/* Targeting the specific div that contains the radio buttons for styling */
 div > div {
   margin-bottom: 10px;
 }
 
-/* Style for the checked radio button */
 input[type="radio"]:checked + label {
   color: #007bff;
   font-weight: bold;

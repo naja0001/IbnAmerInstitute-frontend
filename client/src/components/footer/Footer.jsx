@@ -14,19 +14,9 @@ const Footer = () => {
         <div className="footer-omos" id="footer-sprite">
           <h4>Om os</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi
-            dolorem aspernatur distinctio sint quo officia culpa necessitatibus!
-            Dolorem quas eveniet, rerum quos iste, aliquam illo temporibus nam
-            hic deserunt est.
+            Vi er en uddannelsesinstution der specialisere sig udenfor
+            reciitationsstile qiraat og koranens videnskaber.
           </p>
-          <div className="footer-socials">
-            <li>
-              <a href="#">{/* Add your social media link here */}</a>
-            </li>
-            <li>
-              <a href="#">{/* Add your social media link here */}</a>
-            </li>
-          </div>
         </div>
         <div className="footer-kontaktos" id="footer-sprite">
           <h4>Kontakt os</h4>

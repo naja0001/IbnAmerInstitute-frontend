@@ -9,7 +9,7 @@ const EditCourse = () => {
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     course_name: "",
-    title: "", // New field for teacher's title
+    title: "",
     firstname: "",
     lastname: "",
     email: "",
