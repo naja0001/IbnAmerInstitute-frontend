@@ -1,6 +1,6 @@
 import { API_URL } from "../../settings.js";
 
-const BASE_URL = "https://ibnamerinstitue.azurewebsites.net";
+const BASE_URL = "http://localhost:8080";
 
 export const STUDENTS_URL = API_URL + "/students";
 export const LOGIN_URL = API_URL + "/auth/login";

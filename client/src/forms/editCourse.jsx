@@ -52,7 +52,6 @@ const EditCourse = () => {
     try {
       await updateCourse(courseId, {
         course_name: formData.course_name,
-        // Include teacher details in the update request
         teacher_title: formData.title,
         teacher_firstname: formData.firstname,
         teacher_lastname: formData.lastname,
