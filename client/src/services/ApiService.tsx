@@ -1,4 +1,4 @@
-import { API_URL } from "../../settings.js";
+import { API_URL } from "../../settings";
 
 const BASE_URL = "https://monkfish-app-3d8pn.ondigitalocean.app/";
 
