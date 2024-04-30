@@ -4,7 +4,7 @@ const BASE_URL = "https://monkfish-app-3d8pn.ondigitalocean.app";
 
 export const STUDENTS_URL = BASE_URL + "/students";
 
-export const LOGIN_URL = API_URL + "/auth/login";
+export const LOGIN_URL = BASE_URL + "/auth/login";
 export const TEACHERS_URL = BASE_URL + "/teachers";
 export const COURSES_URL = BASE_URL + "/courses";
 export const CLASSES_URL = BASE_URL + "/classes";
