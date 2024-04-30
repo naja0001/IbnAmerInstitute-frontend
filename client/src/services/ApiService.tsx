@@ -38,7 +38,7 @@ export interface Course {
 
 export interface Class {
   class_id: number;
-  course_id: number; // Make sure this matches the type of course_id in Course
+  course_id: number;
   teacher_id: number;
   duration: string;
 }

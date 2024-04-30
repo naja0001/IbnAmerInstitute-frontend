@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createStudent, getCourses } from "../services/ApiService";
 
@@ -9,8 +9,8 @@ const AddStudent = () => {
     email: "",
     gender: "",
     number: "",
-    course_id: "", // ID will be used to display the selected name in the dropdown
-    course_name: "", // This will be sent to the server
+    course_id: "",
+    course_name: "",
   });
 
   const [courses, setCourses] = useState([]);
@@ -50,7 +50,6 @@ const AddStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Add validation for course_name if required by your backend
     if (
       !student.firstname ||
       !student.lastname ||
@@ -70,13 +69,13 @@ const AddStudent = () => {
       email: student.email,
       gender: student.gender,
       number: student.number,
-      course_name: student.course_name, // Send the course name as required by the backend
+      course_name: student.course_name,
     };
 
     try {
       const response = await createStudent(preparedStudentData);
       console.log("Student created:", response);
-      navigate("/sidebar/students"); // Navigate after success
+      navigate("/sidebar/students");
     } catch (error) {
       console.error("Error adding student:", error.message);
       alert(`Failed to add student. Error: ${error.message}`);
@@ -168,7 +167,7 @@ const AddStudent = () => {
             <select
               className="form-control rounded-0"
               id="inputCourse"
-              name="course" // Use a different name for the select field
+              name="course"
               value={
                 courses.find((c) => c.course_id === student.course_id)
                   ?.course_name || ""

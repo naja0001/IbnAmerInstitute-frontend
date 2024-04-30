@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import Navbar from "../../navbar/NavbarHomePage"; // Import the Navbar component
-import Footer from "../../footer/Footer"; // Import the Navbar component
-import Courses from "../courses/Courses"; // Import the Navbar component
+import Navbar from "../../navbar/NavbarHomePage";
+import Footer from "../../footer/Footer";
+import Courses from "../courses/Courses";
 import logo from "../../../Assets/Images/logo.png";
 import background2 from "../../../Assets/Images/background2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

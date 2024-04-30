@@ -1,5 +1,5 @@
-import Footer from "../../footer/Footer"; // Import the Navbar component
-import Navbar from "../../navbar/NavbarViews"; // Import the Navbar component
+import Footer from "../../footer/Footer";
+import Navbar from "../../navbar/NavbarViews";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../../../Assets/styles/styles.css";
 import Loader from "../../loader/Loader";

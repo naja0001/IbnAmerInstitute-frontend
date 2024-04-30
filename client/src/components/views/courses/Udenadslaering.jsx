@@ -1,10 +1,10 @@
-import Navbar from "../../navbar/NavbarViews"; // Import the Navbar component
+import Navbar from "../../navbar/NavbarViews";
 import forløb1 from "../../../Assets/Images/forløb1.jpg";
 import forløb2 from "../../../Assets/Images/forløb2.jpg";
 import forløb3 from "../../../Assets/Images/forløb3.jpg";
 import "../../../Assets/styles/styles.css";
 import "./courses.css";
-import Footer from "../../footer/Footer"; // Import the Navbar component
+import Footer from "../../footer/Footer";
 import Loader from "../../loader/Loader";
 
 const Udenadslæring = () => {

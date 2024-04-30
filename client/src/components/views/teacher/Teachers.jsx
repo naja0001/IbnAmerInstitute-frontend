@@ -1,9 +1,7 @@
-import Navbar from "../../navbar/NavbarViews"; // Import the Navbar component
+import Navbar from "../../navbar/NavbarViews";
 import teacher from "../../../Assets/Images/teacher.png";
-//import "bootstrap-icons/fonst/bootstrap-icons.css";
 import "../../../Assets/styles/styles.css";
-//import "./kurser.css";
-import Footer from "../../footer/Footer"; // Import the Navbar component
+import Footer from "../../footer/Footer";
 import Reviews from "../../reviews/Reviews";
 import Loader from "../../loader/Loader";
 import "./teacher.css";

@@ -40,7 +40,7 @@
 .contact-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px; /* Adjust the gap as needed */
+  grid-gap: 20px;
 }
 .contact-info {
   display: grid;
