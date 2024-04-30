@@ -1,69 +1,102 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getCourseById, updateCourse } from "../services/ApiService";
+import {
+  getStudentById,
+  updateStudent,
+  getCourses,
+} from "../services/ApiService";
 
-const EditCourse = () => {
-  const { courseId } = useParams();
+const EditStudent = () => {
+  const { studentId } = useParams(); // Get the student ID from the URL
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [formData, setFormData] = useState({
-    course_name: "",
-    title: "", // New field for teacher's title
+  const [student, setStudent] = useState({
     firstname: "",
     lastname: "",
     email: "",
+    gender: "",
     number: "",
+    course_id: "",
+    course_name: "",
   });
+  const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchCourseData = async () => {
-      setLoading(true);
-      setError(null);
+    const fetchInitialData = async () => {
       try {
-        const course = await getCourseById(courseId);
-        setFormData({
-          course_name: course.course_name,
-          // You can set teacher details if available in the course data
-          title: course.teacher_title || "",
-          firstname: course.teacher_firstname || "",
-          lastname: course.teacher_lastname || "",
-          email: course.teacher_email || "",
-          number: course.teacher_number || "",
+        setLoading(true);
+        const fetchedCourses = await getCourses();
+        setCourses(fetchedCourses);
+        const fetchedStudent = await getStudentById(studentId);
+        setStudent({
+          firstname: fetchedStudent.firstname,
+          lastname: fetchedStudent.lastname,
+          email: fetchedStudent.email,
+          gender: fetchedStudent.gender,
+          number: fetchedStudent.number,
+          course_id: fetchedStudent.course_id,
+          course_name: fetchedStudent.course_name,
         });
       } catch (error) {
-        console.error("Error fetching course data:", error);
-        setError("Failed to fetch course data. Please try again later.");
+        console.error("Error fetching data:", error.message);
+        setError("Failed to fetch data. Please try again later.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchCourseData();
-  }, [courseId]);
+    fetchInitialData();
+  }, [studentId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    if (name === "course") {
+      const selectedCourse = courses.find(
+        (course) => course.course_name === value
+      );
+      setStudent((prevStudent) => ({
+        ...prevStudent,
+        course_id: selectedCourse ? selectedCourse.course_id : "",
+        course_name: selectedCourse ? selectedCourse.course_name : "",
+      }));
+    } else {
+      setStudent((prevStudent) => ({
+        ...prevStudent,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (
+      !student.firstname ||
+      !student.lastname ||
+      !student.email ||
+      !student.gender ||
+      !student.number ||
+      !student.course_name
+    ) {
+      alert("Please fill in all fields, including selecting a course.");
+      return;
+    }
+
     try {
-      await updateCourse(courseId, {
-        course_name: formData.course_name,
-        // Include teacher details in the update request
-        teacher_title: formData.title,
-        teacher_firstname: formData.firstname,
-        teacher_lastname: formData.lastname,
-        teacher_email: formData.email,
-        teacher_number: formData.number,
+      await updateStudent(studentId, {
+        firstname: student.firstname,
+        lastname: student.lastname,
+        email: student.email,
+        gender: student.gender,
+        number: student.number,
+        course_name: student.course_name,
       });
-      alert("Course details updated successfully!");
-      navigate("/sidebar/course");
+      alert("Student details updated successfully!");
+      navigate("/sidebar/students"); // Navigate after success
     } catch (error) {
-      console.error("Error updating course:", error);
-      setError("Failed to update course details. Please try again later.");
+      console.error("Error updating student:", error.message);
+      alert(`Failed to update student. Error: ${error.message}`);
     }
   };
 
@@ -73,93 +106,95 @@ const EditCourse = () => {
   return (
     <div className="d-flex justify-content-center align-items-center mt-3">
       <div className="p-3 rounded w-50 border">
-        <h3 className="text-center">Edit Course</h3>
+        <h3 className="text-center">Edit Student</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="course_name" className="form-label">
-              Course Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="course_name"
-              name="course_name"
-              value={formData.course_name}
-              onChange={handleChange}
-            />
-          </div>
-          {/* Teacher form */}
-          <div className="mb-3">
-            <label htmlFor="title" className="form-label">
-              Teacher Title
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              name="title"
-              placeholder="Enter teacher title"
-              value={formData.title}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mb-3">
             <label htmlFor="firstname" className="form-label">
-              Teacher First Name
+              First Name
             </label>
             <input
               type="text"
               className="form-control"
               id="firstname"
               name="firstname"
-              placeholder="Enter teacher first name"
-              value={formData.firstname}
+              value={student.firstname}
               onChange={handleChange}
             />
           </div>
           <div className="mb-3">
             <label htmlFor="lastname" className="form-label">
-              Teacher Last Name
+              Last Name
             </label>
             <input
               type="text"
               className="form-control"
               id="lastname"
               name="lastname"
-              placeholder="Enter teacher last name"
-              value={formData.lastname}
+              value={student.lastname}
               onChange={handleChange}
             />
           </div>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
-              Teacher Email
+              Email
             </label>
             <input
               type="email"
               className="form-control"
               id="email"
               name="email"
-              placeholder="Enter teacher email"
-              value={formData.email}
+              value={student.email}
               onChange={handleChange}
             />
           </div>
           <div className="mb-3">
+            <label htmlFor="gender" className="form-label">
+              Gender
+            </label>
+            <select
+              className="form-control"
+              id="gender"
+              name="gender"
+              value={student.gender}
+              onChange={handleChange}
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <div className="mb-3">
             <label htmlFor="number" className="form-label">
-              Teacher Phone Number
+              Phone Number
             </label>
             <input
               type="text"
               className="form-control"
               id="number"
               name="number"
-              placeholder="Enter teacher phone number"
-              value={formData.number}
+              value={student.number}
               onChange={handleChange}
             />
           </div>
-
+          <div className="mb-3">
+            <label htmlFor="course_name" className="form-label">
+              Course
+            </label>
+            <select
+              className="form-control"
+              id="course_name"
+              name="course_name"
+              value={student.course_name}
+              onChange={handleChange}
+            >
+              <option value="">Select Course</option>
+              {courses.map((course) => (
+                <option key={course.course_id} value={course.course_name}>
+                  {course.course_name}
+                </option>
+              ))}
+            </select>
+          </div>
           <button type="submit" className="btn btn-primary w-100">
             Save Changes
           </button>
@@ -169,4 +204,4 @@ const EditCourse = () => {
   );
 };
 
-export default EditCourse;
+export default EditStudent;

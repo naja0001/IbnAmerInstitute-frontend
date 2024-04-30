@@ -1,9 +1,10 @@
 import { API_URL } from "../../settings.js";
 
-const BASE_URL = "https://ibnamerinstitue.azurewebsites.net";
+const BASE_URL = "https://monkfish-app-3d8pn.ondigitalocean.app";
 
 export const STUDENTS_URL = BASE_URL + "/students";
 
+export const LOGIN_URL = API_URL + "/auth/login";
 export const TEACHERS_URL = BASE_URL + "/teachers";
 export const COURSES_URL = BASE_URL + "/courses";
 export const CLASSES_URL = BASE_URL + "/classes";
@@ -77,6 +78,31 @@ interface QuranProgress {
   grade: string;
 }
 
+export const createLogin = async (loginData) => {
+  try {
+    const response = await fetch(LOGIN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    });
+
+    // Parse JSON first to use in both success and error handling
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      console.error("Create login error response:", responseData);
+      throw new Error(responseData.message || "Failed to create login");
+    }
+
+    console.log("Response from the login attempt:", responseData);
+    return responseData;
+  } catch (error) {
+    console.error("Error creating login:", error);
+    throw error; // Re-throw to handle it further up in your React components
+  }
+};
 //students
 export const getStudent = async () => {
   try {

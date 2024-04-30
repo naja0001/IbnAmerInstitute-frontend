@@ -190,13 +190,6 @@ const StudentDetails = () => {
           checked={state.attendance.isPresent}
           onChange={handleChange}
         />
-        <label>Not present:</label>
-        <input
-          type="checkbox"
-          name="isNotPresent"
-          checked={state.attendance.isPresent}
-          onChange={handleChange}
-        />
         <br /> {/* Line break */}
         <br /> {/* Line break */}
         <label>Assignment Name:</label>
@@ -226,13 +219,6 @@ const StudentDetails = () => {
         />
         {state.errors.dueDate && <div>{state.errors.dueDate}</div>}
         <label>Completed:</label>
-        <input
-          type="checkbox"
-          name="isCompleted"
-          checked={state.homework.isCompleted}
-          onChange={handleChange}
-        />
-        <label>Not Completed:</label>
         <input
           type="checkbox"
           name="isCompleted"
