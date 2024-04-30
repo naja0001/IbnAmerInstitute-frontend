@@ -54,19 +54,24 @@ const AddCourse = () => {
       console.log("Teacher created:", teacherResponse);
 
       // Create the class
+      // Create the class
+      // Update the createClass function call to pass the correct keys
       const classResponse = await createClass({
-        course_id: courseResponse.course_id,
-        teacher_id: teacherResponse.teacher_id,
-        duration: formData.class_duration,
+        courseName: formData.course_name, // Use formData.course_name instead of formData.courseName
+        teacherName: formData.title, // Use formData.title instead of formData.teacherName
+        email: formData.email,
+        duration: formData.class_duration, // Use formData.class_duration instead of formData.duration
       });
+
+      console.log("Course created:", courseResponse);
+      console.log("Teacher created:", teacherResponse);
       console.log("Class created:", classResponse);
 
       // Navigate to the appropriate route after success
       navigate("/sidebar/course");
     } catch (error) {
-      // Log and handle error
-      console.error("Error adding entities:", error.message);
-      alert(`Failed to add entities. Error: ${error.message}`);
+      console.error("Error adding course:", error.message);
+      alert(`Failed to add course. Error: ${error.message}`);
     }
   };
 

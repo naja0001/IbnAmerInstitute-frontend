@@ -443,17 +443,24 @@ export const createTeacher = async (teacherData) => {
       },
       body: JSON.stringify(teacherData),
     });
-    const data = await response.json();
+
+    // Convert the response to JSON and store in a variable
+    const data = await response.json(); // Ensure this happens once
     if (!response.ok) {
-      throw new Error(data.error || "Failed to create teacher");
+      throw new Error("Failed to create teacher");
     }
+
     return data;
   } catch (error) {
-    console.error("Error creating teacher:", error);
-    throw error; // Rethrowing the error after logging
+    console.error(
+      `Error creating teacher (Status code: ${
+        error.response ? error.response.status : "Unknown"
+      }):`,
+      error.message
+    );
+    throw error; // Rethrow the error after logging
   }
 };
-
 export const updateTeacher = async (teacherId, teacherData) => {
   try {
     const response = await fetch(`${TEACHERS_URL}/${teacherId}`, {
