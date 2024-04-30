@@ -107,16 +107,21 @@ const CoursesWithClasses = () => {
                       <ul>
                         {classes
                           .filter((cls) => cls.course_id === course.course_id)
-                          .map((cls) => (
-                            <li key={cls.class_id}>
-                              Class Duration: {cls.duration}
-                              <br />
-                              Teacher:{" "}
-                              {teachers.find(
-                                (t) => t.teacher_id === cls.teacher_id
-                              )?.firstname || "Unknown"}
-                            </li>
-                          ))}
+                          .map((cls) => {
+                            const teacher = teachers.find(
+                              (t) => t.teacher_id === cls.teacher_id
+                            );
+                            return (
+                              <li key={cls.class_id}>
+                                Class Duration: {cls.duration}
+                                <br />
+                                Teacher:{" "}
+                                {teacher
+                                  ? `${teacher.title} ${teacher.firstname} ${teacher.lastname}`
+                                  : "Unknown"}
+                              </li>
+                            );
+                          })}
                       </ul>
                     </div>
                   )}

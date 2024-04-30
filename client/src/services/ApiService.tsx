@@ -352,25 +352,23 @@ export const getClassById = async (id) => {
 //classes
 export const createClass = async (classData) => {
   try {
-    const response = await fetch(CLASSES_URL, {
+    const response = await fetch(`${CLASSES_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(classData),
     });
-    const responseData = await response.json(); // Parse JSON response regardless of the response status
+
     if (!response.ok) {
-      // Log and throw detailed error information from the server
-      console.error("Failed to create class:", responseData);
-      throw new Error(
-        `Failed to create class: ${responseData.error || "Unknown error"}`
-      );
+      const errorResponse = await response.json();
+      throw new Error(`Failed to create class: ${errorResponse.error}`);
     }
-    return responseData;
+
+    return await response.json();
   } catch (error) {
-    console.error("Error creating class:", error.message);
-    throw error; // Consider handling this thrown error if not already being handled
+    console.error("Error creating class:", error);
+    throw error;
   }
 };
 

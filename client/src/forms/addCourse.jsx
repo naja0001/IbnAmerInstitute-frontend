@@ -10,7 +10,7 @@ const AddCourse = () => {
   const [formData, setFormData] = useState({
     course_name: "",
     class_duration: "",
-    title: "", // New field for teacher's title
+    title: "",
     firstname: "",
     lastname: "",
     email: "",
@@ -55,9 +55,9 @@ const AddCourse = () => {
 
       // Create the class
       const classResponse = await createClass({
-        duration: formData.class_duration,
         course_id: courseResponse.course_id,
         teacher_id: teacherResponse.teacher_id,
+        duration: formData.class_duration,
       });
       console.log("Class created:", classResponse);
 
@@ -78,7 +78,7 @@ const AddCourse = () => {
   return (
     <div className="d-flex justify-content-center align-items-center mt-3">
       <div className="p-3 rounded w-50 border">
-        <h3 className="text-center">Add New Entities</h3>
+        <h3 className="text-center">Add Course</h3>
         <form onSubmit={handleSubmit}>
           {/* Course form */}
           <div className="mb-3">
@@ -183,7 +183,7 @@ const AddCourse = () => {
           </div>
 
           <button type="submit" className="btn btn-primary w-100">
-            Add Entities
+            Add Course
           </button>
         </form>
       </div>
