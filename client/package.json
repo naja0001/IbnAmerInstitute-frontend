@@ -6,12 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "babel-node src/main.jsx",
+    "start": "node src/main.jsx",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@babel/node": "^7.23.9",
     "@emailjs/browser": "^4.3.3",
     "@emotion/styled": "^11.11.5",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -32,10 +31,6 @@
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.24.5",
-    "@babel/core": "^7.24.5",
-    "@babel/preset-env": "^7.24.5",
-    "@babel/preset-react": "^7.24.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react-swc": "^3.6.0",
